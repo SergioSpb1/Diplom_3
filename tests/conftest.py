@@ -1,10 +1,9 @@
 import pytest
 import uuid
-import requests
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service as ChromeService
 from webdriver_manager.chrome import ChromeDriverManager
-from data import StellarUrls
+from api_helpers import StellarApiWorker
 
 @pytest.fixture(params=["chrome", "firefox"])
 def driver(request):
@@ -18,18 +17,6 @@ def driver(request):
 
     yield browser
     browser.quit()
-
-
-class StellarApiWorker:
-    @classmethod
-    def register_account(cls, payload):
-        return requests.post(StellarUrls.API_REGISTER, json=payload)
-        
-    @classmethod
-    def wipe_account(cls, token):
-        headers = {"Authorization": token}
-        return requests.delete(StellarUrls.API_USER_MODIFICATION, headers=headers)
-
 
 @pytest.fixture
 def create_unique_user():

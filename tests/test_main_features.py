@@ -10,7 +10,7 @@ class TestMainDashboardFeatures:
         constructor_page.open_url(StellarUrls.ORDER_STREAM_PAGE)
         constructor_page.navigate_to_builder()
 
-        assert StellarUrls.BASE_URL in driver.current_url
+        assert StellarUrls.BASE_URL in constructor_page.get_current_url()
 
     @allure.title("Проверка успешного перехода в раздел Лента заказов")
     def test_navigate_to_order_stream_success(self, driver):
@@ -18,7 +18,7 @@ class TestMainDashboardFeatures:
         constructor_page.open_url(StellarUrls.BASE_URL)
         constructor_page.navigate_to_order_stream()
 
-        assert StellarUrls.ORDER_STREAM_PAGE in driver.current_url
+        assert StellarUrls.ORDER_STREAM_PAGE in constructor_page.get_current_url()
 
     @allure.title("Проверка открытия модального окна с деталями ингредиента")
     def test_open_ingredient_details_popup(self, driver):

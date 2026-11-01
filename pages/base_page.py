@@ -74,3 +74,8 @@ class BasePage:
         element = self.find_element_with_waiting(locator)
         self.driver.execute_script("arguments[0].click();", element)
 
+    @allure.step("Получение текущего URL-адреса страницы")
+    def get_current_url(self):
+        return self.driver.current_url
+
+
